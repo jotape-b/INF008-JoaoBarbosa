@@ -1,6 +1,6 @@
 package users;
 public class Customer extends User {
-    public Customer(UserType userType, String name, String email, String password) throws Exception{
+    public Customer(int userType, String name, String email, String password) throws Exception{
         super(userType, name, email, password);
     }
     //endereço de entrega
