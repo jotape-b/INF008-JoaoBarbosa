@@ -1,14 +1,17 @@
 package users;
+enum UserType{USER, ADMIN}
 public class User {
     private static int idCounter = 0;
     private int id;
+    private UserType userType;
     private String name;
     private String email;
     private String salt;
     private String password;
 
-    public User(String name, String email, String password) throws Exception{
+    public User(UserType userType, String name, String email, String password) throws Exception{
         this.id = idCounter++;
+        this.userType = userType;
         this.name = name;
         this.email = email;
         String[] hashAndSalt = PasswordHasher.createHashWithSalt(password);

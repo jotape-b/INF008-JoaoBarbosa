@@ -1,5 +1,15 @@
 package users;
+import java.util.HashMap;
 public class Admin extends User{
+    // HashMap<Integer, User> users = new HashMap<Integer, User>();
+
+    public Admin(UserType userType, String name, String email, String password) throws Exception{
+        super(userType, name, email, password);
+    }
+
+
+
+    
     //gerenciar produtos e usuários
     //acessar relatórios
 
