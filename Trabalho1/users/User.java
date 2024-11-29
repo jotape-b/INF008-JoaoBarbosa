@@ -11,7 +11,8 @@ public class User {
         this.id = idCounter++;
         this.name = name;
         this.email = email;
-        this.salt = PasswordHasher.generateSalt();
-        this.password = PasswordHasher.hashPassword(password, this.salt);
+        String[] hashAndSalt = PasswordHasher.createHashWithSalt(password);
+        this.salt = hashAndSalt[0];
+        this.password = hashAndSalt[1];
     }
 }

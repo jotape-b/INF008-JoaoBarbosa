@@ -7,17 +7,24 @@ import javax.crypto.spec.PBEKeySpec;
 
 public class PasswordHasher {
 
-    public static String generateSalt(){
+    private static String generateSalt(){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }
 
-    public static String hashPassword(String password, String salt) throws Exception{
+    private static String hashPassword(String password, String salt) throws Exception{
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 128);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = factory.generateSecret(spec).getEncoded();
         return Base64.getEncoder().encodeToString(hash);
+    }
+
+    //Interface pública de geração de salt e hash
+    public static String[] createHashWithSalt(String password) throws Exception{
+        String salt = generateSalt();
+        String hash = hashPassword(password, salt);
+        return new String[]{hash, salt};
     }
 }
