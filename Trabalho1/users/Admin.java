@@ -14,13 +14,13 @@ public class Admin extends User{
             System.out.println("Invalid register. E-mail already in use.");
             return false;
         }
-        User newUser = (userType == UserType.ADMIN) ? new Admin(userType, name, email, password) : new User(userType, name, email, password);
+        User newUser = (userType == UserType.ADMIN) ? new Admin(userType, name, email, password) : new Customer(userType, name, email, password);
         users.put(newUser.getId(), newUser);
         registeredEmails.add(email);
         System.out.println("User successfully registered.");
         return true;
     }
-    
+
     //gerenciar produtos
     //acessar relatórios
 

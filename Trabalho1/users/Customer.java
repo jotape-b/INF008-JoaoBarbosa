@@ -1,10 +1,12 @@
 package users;
 public class Customer extends User {
+    private String address;
+    //endereço de entrega
+    //histórico/lista de compras
+
     public Customer(UserType userType, String name, String email, String password) throws Exception{
         super(userType, name, email, password);
     }
-    //endereço de entrega
-    //histórico/lista de compras
 
     //start new order
         //add product
