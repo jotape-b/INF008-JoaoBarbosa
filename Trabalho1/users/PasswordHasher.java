@@ -21,12 +21,16 @@ public class PasswordHasher {
         return Base64.getEncoder().encodeToString(hash);
     }
 
-
-    //Interface pública de geração de salt e hash
+    //Public interface for salt generating and password hashing
     public static String[] createHashWithSalt(String password) throws Exception{
         String salt = generateSalt();
         String hash = hashPassword(password, salt);
         return new String[]{hash, salt};
+    }
+
+    public static boolean verifyPassword(String insertedPassword, String expectedPassword, String salt) throws Exception{
+        String newHash = hashPassword(insertedPassword, salt);
+        return newHash.equals(expectedPassword);
     }
 
 

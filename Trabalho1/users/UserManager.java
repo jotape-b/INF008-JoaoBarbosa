@@ -1,6 +1,7 @@
 package users;
 
 import java.util.HashMap;
+import users.User;
 
 public class UserManager{
     
@@ -17,5 +18,17 @@ public class UserManager{
         users.put(newUser.getEmail(), newUser);
         System.out.println("User successfully registered.");
         return true;
+    }
+
+    public User authenticateUser(String insertedEmail, String insertedPassword) throws Exception{
+        User user = users.get(insertedEmail);
+        if(user != null && PasswordHasher.verifyPassword(insertedPassword, user.getPassword(), user.getSalt())){
+            System.out.println("Login successful.");
+        }
+        else{
+            System.out.println("Login failed. Incorrect password or email."); 
+            user = null;
+        }
+        return user;
     }
 }

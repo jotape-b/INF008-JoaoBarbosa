@@ -25,7 +25,16 @@ public class User {
         return false;
     }
 
-    public String getEmail(){
+    protected String getEmail(){
         return email;
     }
+
+    protected String getPassword(){
+        return password;
+    }
+
+    protected String getSalt(){
+        return salt;
+    }
+
 }
