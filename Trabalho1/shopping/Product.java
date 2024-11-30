@@ -17,4 +17,8 @@ public class Product {
         this.inStock = inStock;
         this.productType = productType;
     }
+
+    public int getId(){
+        return id;
+    }
 }

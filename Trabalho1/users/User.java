@@ -19,6 +19,10 @@ public class User {
         this.password = hashAndSalt[1];
     }
 
+    public boolean isAdmin(){
+        return false;
+    }
+
     public int getId(){
         return id;
     }

@@ -9,6 +9,11 @@ public class Admin extends User{
         super(userType, name, email, password);
     }
 
+    @Override
+    public boolean isAdmin(){
+        return true;
+    }
+
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
         if(registeredEmails.contains(email)){
             System.out.println("Invalid register. E-mail already in use.");
