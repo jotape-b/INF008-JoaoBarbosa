@@ -1,4 +1,4 @@
-package shopping;
+package users;
 
 public class ShoppingCart {
     
