@@ -21,10 +21,13 @@ public class PasswordHasher {
         return Base64.getEncoder().encodeToString(hash);
     }
 
+
     //Interface pública de geração de salt e hash
     public static String[] createHashWithSalt(String password) throws Exception{
         String salt = generateSalt();
         String hash = hashPassword(password, salt);
         return new String[]{hash, salt};
     }
+
+
 }

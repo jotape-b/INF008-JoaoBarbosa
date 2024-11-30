@@ -1,23 +1,20 @@
 package users;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class UserManager{
     
-    HashMap<Integer, User> users = new HashMap<Integer, User>();
-    HashSet<String> registeredEmails = new HashSet<String>();
+    HashMap<String, User> users = new HashMap<String, User>();
 
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
-        if(registeredEmails.contains(email)){
+        if(users.containsKey(email)){
             System.out.println("Invalid register. E-mail already in use.");
             return false;
         }
         User newUser = (userType == UserType.ADMIN) 
             ? new Admin(userType, name, email, password, this) 
             : new Customer(userType, name, email, password);
-        users.put(newUser.getId(), newUser);
-        registeredEmails.add(email);
+        users.put(newUser.getEmail(), newUser);
         System.out.println("User successfully registered.");
         return true;
     }
