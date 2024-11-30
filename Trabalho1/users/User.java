@@ -1,5 +1,7 @@
 package users;
+
 enum UserType{USER, ADMIN}
+
 public class User {
     private static int idCounter = 0;
     private int id;

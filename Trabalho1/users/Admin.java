@@ -1,12 +1,10 @@
 package users;
-import java.util.HashMap;
-import java.util.HashSet;
 public class Admin extends User{
-    HashMap<Integer, User> users = new HashMap<Integer, User>();
-    HashSet<String> registeredEmails = new HashSet<String>();
+    private UserManager userManager;
 
-    public Admin(UserType userType, String name, String email, String password) throws Exception{
+    public Admin(UserType userType, String name, String email, String password, UserManager userManager) throws Exception{
         super(userType, name, email, password);
+        this.userManager = userManager;
     }
 
     @Override
@@ -15,16 +13,12 @@ public class Admin extends User{
     }
 
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
-        if(registeredEmails.contains(email)){
-            System.out.println("Invalid register. E-mail already in use.");
-            return false;
-        }
-        User newUser = (userType == UserType.ADMIN) ? new Admin(userType, name, email, password) : new Customer(userType, name, email, password);
-        users.put(newUser.getId(), newUser);
-        registeredEmails.add(email);
-        System.out.println("User successfully registered.");
-        return true;
+        return userManager.addUser(userType, name, email, password);
     }
+
+    // public boolean addProduct(String name, String description, float price, int inStock, String productType, User user){
+    //     return ProductManager.addProduct(name, description, price, inStock, productType, );
+    // }
 
     //gerenciar produtos
     //acessar relatórios
