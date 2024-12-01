@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class UserManager{
     
-    HashMap<String, User> users = new HashMap<String, User>();
-    SessionManager sessionManager;
+    private HashMap<String, User> users = new HashMap<String, User>();
+    private SessionManager sessionManager;
     
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
         if(!sessionManager.isAdmin()){
@@ -28,11 +28,11 @@ public class UserManager{
         User user = users.get(insertedEmail);
         if(user != null && PasswordHasher.verifyPassword(insertedPassword, user.getPassword(), user.getSalt())){
             System.out.println("Login successful.");
+            return user;
         }
         else{
             System.out.println("Login failed. Incorrect password or email."); 
-            user = null;
+            return null;
         }
-        return user;
     }
 }
