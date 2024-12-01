@@ -6,12 +6,7 @@ public class Admin extends User{
         super(userType, name, email, password);
         this.userManager = userManager;
     }
-
-    @Override
-    public boolean isAdmin(){
-        return true;
-    }
-
+    
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
         return userManager.addUser(userType, name, email, password);
     }

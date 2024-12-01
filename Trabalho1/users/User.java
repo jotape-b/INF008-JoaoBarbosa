@@ -21,10 +21,6 @@ public class User {
         this.password = hashAndSalt[1];
     }
 
-    public boolean isAdmin(){
-        return false;
-    }
-
     protected String getEmail(){
         return email;
     }

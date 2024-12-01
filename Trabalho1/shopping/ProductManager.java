@@ -1,13 +1,14 @@
 package shopping;
-import users.User;
+import users.SessionManager;
 import java.util.HashMap;
 
 public class ProductManager {
     HashMap<Integer, Product> products = new HashMap<Integer, Product>();
+    private SessionManager sessionManager;
     
-    public boolean addProduct(String name, String description, float price, int inStock, String productType, User user){
-        if(!user.isAdmin()){
-            System.out.println("Access denied. User is not administrator.");
+    public boolean addProduct(String name, String description, float price, int inStock, String productType){
+        if(!sessionManager.isAdmin()){
+            System.out.println("Invalid action. User is not administrator.");
             return false;
         }
         Product newProduct = new Product(name, description, price, inStock, productType);

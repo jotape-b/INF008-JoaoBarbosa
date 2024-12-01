@@ -1,13 +1,17 @@
 package users;
 
 import java.util.HashMap;
-import users.User;
 
 public class UserManager{
     
     HashMap<String, User> users = new HashMap<String, User>();
-
+    SessionManager sessionManager;
+    
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
+        if(!sessionManager.isAdmin()){
+            System.out.println("Invalid action. User is not administrator.");
+            return false;
+        }
         if(users.containsKey(email)){
             System.out.println("Invalid register. E-mail already in use.");
             return false;
