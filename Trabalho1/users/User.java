@@ -1,7 +1,5 @@
 package users;
 
-enum UserType{USER, ADMIN}
-
 public class User {
     private static int idCounter = 0;
     private int id;
@@ -19,6 +17,10 @@ public class User {
         String[] hashAndSalt = PasswordHasher.createHashWithSalt(password);
         this.salt = hashAndSalt[0];
         this.password = hashAndSalt[1];
+    }
+
+    public UserType getUserType(){
+        return userType;
     }
 
     protected String getEmail(){
