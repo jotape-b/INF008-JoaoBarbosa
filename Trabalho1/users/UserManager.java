@@ -12,7 +12,7 @@ public class UserManager{
             return false;
         }
         User newUser = (userType == UserType.ADMIN) 
-            ? new Admin(userType, name, email, password, this) 
+            ? new Admin(userType, name, email, password) 
             : new Customer(userType, name, email, password);
         users.put(newUser.getEmail(), newUser);
         return true;

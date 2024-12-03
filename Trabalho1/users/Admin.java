@@ -1,14 +1,20 @@
 package users;
-public class Admin extends User{
-    private UserManager userManager;
 
-    public Admin(UserType userType, String name, String email, String password, UserManager userManager) throws Exception{
+import auth.SessionManager;
+
+public class Admin extends User{
+    private SessionManager sessionManager;
+
+    public Admin(UserType userType, String name, String email, String password) throws Exception{
         super(userType, name, email, password);
-        this.userManager = userManager;
     }
     
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
-        return userManager.addUser(userType, name, email, password);
+        return sessionManager.validateAddUser(userType, name, email, password);
+    }
+
+    public boolean addProduct(String name, String description, float price, int inStock, String productType){
+        return sessionManager.validateAddProduct(name, description, price, inStock, productType);
     }
 
     // public boolean addProduct(String name, String description, float price, int inStock, String productType, User user){
