@@ -62,6 +62,13 @@ public class ShoppingCart {
         return total;
     }
 
+    public Order checkout(){
+        double total = calculateTotalPrice();
+        Order order = new Order(cart, total);
+        cart.clear();
+        return order;
+    }
+
     public static class CartItem{
         private Product product;
         private int quantity;
