@@ -64,6 +64,11 @@ public class ShoppingCart {
 
     public Order checkout(){
         double total = calculateTotalPrice();
+
+        for(CartItem item : cart.values()){
+            productManager.decrementStock(item.product.getId(), item.getQuantity());
+        }
+
         Order order = new Order(cart, total);
         cart.clear();
         return order;
