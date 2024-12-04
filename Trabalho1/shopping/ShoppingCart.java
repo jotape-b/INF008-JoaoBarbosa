@@ -47,14 +47,22 @@ public class ShoppingCart {
             return false;
         }
 
-        if(quantity <= 0){
+        if((quantity <= 0) || (quantity > product.getStock())){
             return false;
         }
 
         return true;
     }
 
-    private static class CartItem{
+    private double calculateTotalPrice(){
+        double total = 0.0;
+        for(CartItem item : cart.values()){
+            total += item.getPrice() * item.getQuantity();
+        }
+        return total;
+    }
+
+    public static class CartItem{
         private Product product;
         private int quantity;
 
@@ -65,6 +73,10 @@ public class ShoppingCart {
 
         public int getQuantity(){
             return quantity;
+        }
+
+        public double getPrice(){
+            return product.getPrice();
         }
 
         public void incrementQuantity(int amount){

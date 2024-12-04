@@ -5,20 +5,32 @@ public class Product {
     private int id;
     private String name;
     private String description;
-    private float price;
-    private int inStock;
+    private double price;
+    private int stock;
     private String productType;
 
-    public Product(String name, String description, float price, int inStock, String productType){
+    public Product(String name, String description, double price, int stock, String productType){
         this.id = idCounter++;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.inStock = inStock;
+        this.stock = stock;
         this.productType = productType;
     }
 
     public int getId(){
         return id;
     }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public int getStock(){
+        return stock;
+    }
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
 }
