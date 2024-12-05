@@ -1,6 +1,8 @@
 package shopping;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ProductManager {
     protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
@@ -12,13 +14,13 @@ public class ProductManager {
         return true;
     }
 
-    public boolean removeProduct(int productId){
+    protected boolean removeProduct(int productId){
         if(!(doesProductExist(productId))) return false;
         products.remove(productId);
         return true;
     }
 
-    public boolean incrementStock(int productId, int amount){
+    protected boolean incrementStock(int productId, int amount){
         if(!(doesProductExist(productId))) return false;
         if(!(isAmountValid(amount))) return false;
 
@@ -27,7 +29,7 @@ public class ProductManager {
         return true;
     }
 
-    public boolean decrementStock(int productId, int amount){
+    protected boolean decrementStock(int productId, int amount){
         if(!(doesProductExist(productId))) return false;
         if(!(isAmountValid(amount))) return false;
 
@@ -45,6 +47,14 @@ public class ProductManager {
     private boolean isAmountValid(int amount){
         if(amount <= 0) return false;
         return true;
+    }
+
+    public int reportLowestStock(){
+        return products.entrySet()
+            .stream()
+            .min(Comparator.comparingInt(entry -> entry.getValue().getStock()))
+            .map(Map.Entry::getKey)
+            .orElse(null);
     }
 
 }
