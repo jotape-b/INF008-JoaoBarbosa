@@ -17,12 +17,6 @@ public class Admin extends User{
     public boolean addProduct(String name, String description, float price, int inStock, String productType){
         return sessionManager.validateAddProduct(name, description, price, inStock, productType);
     }
-
-    // public boolean addProduct(String name, String description, float price, int inStock, String productType, User user){
-    //     return ProductManager.addProduct(name, description, price, inStock, productType, );
-    // }
-
-    //gerenciar produtos
     //acessar relatórios
 
     //create new product

@@ -16,5 +16,9 @@ public class Order {
         this.date = LocalDate.now();
         this.total = total;
     }
+
+    protected double getTotal(){
+        return total;
+    }
     
 }

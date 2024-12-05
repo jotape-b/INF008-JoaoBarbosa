@@ -33,6 +33,10 @@ public class Customer extends User {
         }
     }
 
+    public ArrayList<Order> getOrderHistory(){
+        return orderHistory;
+    }
+
     //start new order
         //add product
         //view shopping cart
