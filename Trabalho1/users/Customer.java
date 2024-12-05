@@ -1,11 +1,30 @@
 package users;
+
+import java.util.ArrayList;
+import shopping.Order;
+
+import auth.SessionManager;
+
 public class Customer extends User {
+    private SessionManager sessionManager;
+    private ArrayList<Order> orderHistory = new ArrayList<Order>();
     private String address;
-    //endereço de entrega
-    //histórico/lista de compras
 
     public Customer(UserType userType, String name, String email, String password) throws Exception{
         super(userType, name, email, password);
+    }
+
+    public boolean addToCart(int productId, int quantity){
+        return sessionManager.validateAddToCart(productId, quantity);
+    }
+
+    public boolean removeFromCart(int itemId, int quantity){
+        return sessionManager.validateRemoveFromCart(itemId, quantity);
+    }
+
+    public void checkout(){
+        Order newOrder = sessionManager.validateCheckout();
+        orderHistory.add(newOrder);
     }
 
     //start new order

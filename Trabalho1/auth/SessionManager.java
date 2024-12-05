@@ -1,5 +1,6 @@
 package auth;
 
+import shopping.Order;
 import shopping.ProductManager;
 import shopping.ShoppingCart;
 import users.Admin;
@@ -56,10 +57,10 @@ public class SessionManager {
         return shoppingCart.removeFromCart(itemId, quantity);
     }
 
-    public boolean validateCheckout(){
-        if(isLoggedIn()) return false;
+    public Order validateCheckout(){
+        if(isLoggedIn()) return null;
         System.out.println("Order made.");
-        return (shoppingCart.checkout() != null);
+        return shoppingCart.checkout();
     }
 
     public void login(String email, String password) throws Exception{
