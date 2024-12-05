@@ -12,12 +12,13 @@ public class ShoppingCart {
     }
     
     public boolean addToCart(int productId, int quantity){
-        if(!(isCartActionValid(productId, quantity))) return false;
+        if(!(productManager.doesProductExist(productId))) return false;
+        if(!(isThereEnoughStock(productId, quantity))) return false;
 
         Product product = productManager.products.get(productId);
         CartItem item = cart.get(productId);
 
-        if(item != null){
+        if(doesCartItemExist(productId)){
             item.incrementQuantity(quantity);
         }
         else{
@@ -26,13 +27,12 @@ public class ShoppingCart {
         return true;
     }
 
-    public boolean removeFromCart(int productId, int quantity){
-        if(!(isCartActionValid(productId, quantity))) return false;
+    public boolean removeFromCart(int itemId, int quantity){
+        if(!(doesCartItemExist(itemId))) return false;
 
-        CartItem item = cart.get(productId);
-        
+        CartItem item = cart.get(itemId);
         if(item.getQuantity() <= quantity){
-            cart.remove(productId);
+            cart.remove(itemId);
         }
         else{
             item.decrementQuantity(quantity);
@@ -40,18 +40,14 @@ public class ShoppingCart {
         return true;
     }
 
-    private boolean isCartActionValid(int productId, int quantity){
+    private boolean isThereEnoughStock(int productId, int quantity){
         Product product = productManager.products.get(productId);
-       
-        if(product == null){
-            return false;
-        }
-
-        if((quantity <= 0) || (quantity > product.getStock())){
-            return false;
-        }
-
+        if((quantity <= 0) || (quantity > product.getStock())) return false;
         return true;
+    }
+
+    private boolean doesCartItemExist(int itemId){
+        return cart.containsKey(itemId);
     }
 
     private double calculateTotalPrice(){
@@ -63,16 +59,17 @@ public class ShoppingCart {
     }
 
     public Order checkout(){
-        double total = calculateTotalPrice();
+        if(cart.isEmpty()) return null;
 
+        double total = calculateTotalPrice();
         for(CartItem item : cart.values()){
             productManager.decrementStock(item.product.getId(), item.getQuantity());
         }
-
         Order order = new Order(cart, total);
         cart.clear();
         return order;
     }
+
 
     public static class CartItem{
         private Product product;

@@ -11,39 +11,34 @@ public class ProductManager {
         return true;
     }
 
-    public boolean removeProduct(int itemId){
-        if(!(doesProductExist(itemId))) return false;
-
-        products.remove(itemId);
+    public boolean removeProduct(int productId){
+        if(!(doesProductExist(productId))) return false;
+        products.remove(productId);
         return true;
     }
 
-    public boolean incrementStock(int itemId, int amount){
-        if(!(doesProductExist(itemId))) return false;
+    public boolean incrementStock(int productId, int amount){
+        if(!(doesProductExist(productId))) return false;
         if(!(isAmountValid(amount))) return false;
 
-        Product item = products.get(itemId);
-        item.setStock(item.getStock() + amount);
+        Product product = products.get(productId);
+        product.setStock(product.getStock() + amount);
         return true;
     }
 
-    public boolean decrementStock(int itemId, int amount){
-        if(!(doesProductExist(itemId))) return false;
+    public boolean decrementStock(int productId, int amount){
+        if(!(doesProductExist(productId))) return false;
         if(!(isAmountValid(amount))) return false;
 
-        Product item = products.get(itemId);
-        if(amount >= item.getStock()){
-            removeProduct(itemId);
-        }
+        Product product = products.get(productId);
+        if(amount >= product.getStock()) removeProduct(productId);
 
-        item.setStock(item.getStock() - amount);
+        product.setStock(product.getStock() - amount);
         return true;
     }
 
-    private boolean doesProductExist(int itemId){
-        Product item = products.get(itemId);
-        if(item == null) return false;
-        return true;
+    protected boolean doesProductExist(int productId){
+        return products.containsKey(productId);
     }
 
     private boolean isAmountValid(int amount){
