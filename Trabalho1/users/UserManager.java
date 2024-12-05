@@ -1,9 +1,11 @@
 package users;
 
 import java.util.HashMap;
+import auth.SessionManager;
 
 public class UserManager{
     
+    private SessionManager sessionManager;
     private final HashMap<String, User> users = new HashMap<String, User>();
     
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
@@ -12,8 +14,8 @@ public class UserManager{
             return false;
         }
         User newUser = (userType == UserType.ADMIN) 
-            ? new Admin(userType, name, email, password) 
-            : new Customer(userType, name, email, password);
+            ? new Admin(userType, name, email, password, sessionManager)
+            : new Customer(userType, name, email, password, sessionManager);
         users.put(newUser.getEmail(), newUser);
         return true;
     }

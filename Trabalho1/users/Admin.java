@@ -5,8 +5,9 @@ import auth.SessionManager;
 public class Admin extends User{
     private SessionManager sessionManager;
 
-    public Admin(UserType userType, String name, String email, String password) throws Exception{
+    public Admin(UserType userType, String name, String email, String password, SessionManager sessionManager) throws Exception{
         super(userType, name, email, password);
+        this.sessionManager = sessionManager;
     }
     
     public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
