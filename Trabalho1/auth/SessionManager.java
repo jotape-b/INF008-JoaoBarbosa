@@ -1,6 +1,7 @@
 package auth;
 
 import shopping.ProductManager;
+import shopping.ShoppingCart;
 import users.Admin;
 import users.User;
 import users.UserManager;
@@ -11,10 +12,12 @@ public class SessionManager {
     private User loggedInUser;
     private UserManager userManager;
     private ProductManager productManager;
+    private ShoppingCart shoppingCart;
 
-    public SessionManager(UserManager userManager, ProductManager productManager) {
+    public SessionManager(UserManager userManager, ProductManager productManager, ShoppingCart shoppingCart) {
         this.userManager = userManager;
         this.productManager = productManager;
+        this.shoppingCart = shoppingCart;
     }
 
     private boolean isAdmin(){
@@ -23,6 +26,10 @@ public class SessionManager {
             return false;
         }
         return true;
+    }
+
+    private boolean isLoggedIn(){
+        return (loggedInUser != null);
     }
 
     public boolean validateAddUser(UserType userType, String name, String email, String password) throws Exception{
@@ -35,6 +42,24 @@ public class SessionManager {
         if(!isAdmin()) return false;
         System.out.println("Product successfully registered.");
         return productManager.addProduct(name, description, price, inStock, productType);
+    }
+
+    public boolean validateAddToCart(int productId, int quantity){
+        if(!isLoggedIn()) return false;
+        System.out.println("Item added to cart.");
+        return shoppingCart.addToCart(productId, quantity);
+    }
+
+    public boolean validateRemoveFromCart(int itemId, int quantity){
+        if(!isLoggedIn()) return false;
+        System.out.println("Item removed from cart.");
+        return shoppingCart.removeFromCart(itemId, quantity);
+    }
+
+    public boolean validateCheckout(){
+        if(isLoggedIn()) return false;
+        System.out.println("Order made.");
+        return (shoppingCart.checkout() != null);
     }
 
     public void login(String email, String password) throws Exception{
