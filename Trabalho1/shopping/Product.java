@@ -33,4 +33,14 @@ public class Product {
         this.stock = stock;
     }
 
+    @Override
+    public String toString(){
+        return "Product ID: " + id + "\n" +
+            "Name: " + name + "\n" +
+            "Description: " + description + "\n" +
+            "Price: " + price + "\n" +
+            "Stock: " + stock + "\n" +
+            "Category: " + productType;
+    }
+
 }
