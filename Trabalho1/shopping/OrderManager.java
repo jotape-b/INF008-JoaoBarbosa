@@ -10,10 +10,11 @@ public class OrderManager {
         this.customer = customer;
     }
 
-    public Order reportHighestOrderTotal(){
+    public int reportHighestOrderTotal(){
         return customer.getOrderHistory()
             .stream()
             .max(Comparator.comparing(Order::getTotal))
+            .map(Order::getId)
             .orElse(null);
     }
     

@@ -20,5 +20,9 @@ public class Order {
     protected double getTotal(){
         return total;
     }
+
+    protected int getId(){
+        return id;
+    }
     
 }
