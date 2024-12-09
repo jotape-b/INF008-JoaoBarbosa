@@ -96,6 +96,11 @@ public class ShoppingCart {
             this.quantity -= amount;
         }
 
+        @Override
+        public String toString(){
+            return "Product " + product.getId() + ":" + product.getName() + ", Quantity: " + quantity;
+        }
+
     }
 }
 

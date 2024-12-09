@@ -12,9 +12,9 @@ public class Order {
 
     public Order(HashMap<Integer, CartItem> items, double total){
         this.id = idCounter++;
-        this.items = new HashMap<>(items);
         this.date = LocalDate.now();
         this.total = total;
+        this.items = new HashMap<>(items);
     }
 
     protected double getTotal(){
@@ -23,6 +23,21 @@ public class Order {
 
     protected int getId(){
         return id;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order ID: ").append(id).append("\n")
+            .append("Date: ").append(date).append("\n")
+            .append("Total: $").append(String.format("%.2f, total")). append("\n")
+            .append("Items:\n");
+
+        for(CartItem item : items.values()){
+            sb.append(" ").append(item).append("\n");
+        }
+
+        return sb.toString();
     }
     
 }

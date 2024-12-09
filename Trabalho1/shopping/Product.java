@@ -33,6 +33,10 @@ public class Product {
         this.stock = stock;
     }
 
+    protected String getName(){
+        return name;
+    }
+
     @Override
     public String toString(){
         return "Product ID: " + id + "\n" +
