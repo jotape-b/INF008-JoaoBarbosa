@@ -10,12 +10,22 @@ public class OrderManager {
         this.customer = customer;
     }
 
-    public int reportHighestOrderTotal(){
-        return customer.getOrderHistory()
+    public boolean reportHighestOrderTotal() {
+        Order highestOrder = customer.getOrderHistory()
             .stream()
             .max(Comparator.comparing(Order::getTotal))
-            .map(Order::getId)
             .orElse(null);
+            
+        if (highestOrder != null) {
+            printOrder(highestOrder);
+            return true;
+        } else {
+            System.out.println("No orders found.");
+            return false;
+        }
     }
     
+    private void printOrder(Order order){
+        System.out.println(order);
+    }
 }

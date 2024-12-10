@@ -30,7 +30,7 @@ public class Order {
         StringBuilder sb = new StringBuilder();
         sb.append("Order ID: ").append(id).append("\n")
             .append("Date: ").append(date).append("\n")
-            .append("Total: $").append(String.format("%.2f, total")). append("\n")
+            .append("Total: $").append(String.format("%.2f", total)).append("\n")
             .append("Items:\n");
 
         for(CartItem item : items.values()){

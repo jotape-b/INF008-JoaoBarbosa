@@ -57,13 +57,13 @@ public class SessionManager {
         return productManager.addProduct(name, description, price, inStock, productType);
     }
 
-    public int validateReportHighestOrderTotal(){
-        if(!isAdmin()) return 0;
+    public boolean validateReportHighestOrderTotal(){
+        if(!isAdmin()) return false;
         return orderManager.reportHighestOrderTotal();
     }
 
-    public int validateReportLowestStock(){
-        if(!isAdmin()) return 0;
+    public boolean validateReportLowestStock(){
+        if(!isAdmin()) return true;
         return productManager.reportLowestStock();
     }
 

@@ -49,12 +49,25 @@ public class ProductManager {
         return true;
     }
 
-    public int reportLowestStock(){
-        return products.entrySet()
+    public boolean reportLowestStock(){
+        Integer lowestStock = products.entrySet()
             .stream()
             .min(Comparator.comparingInt(entry -> entry.getValue().getStock()))
             .map(Map.Entry::getKey)
             .orElse(null);
+        if(lowestStock != null){
+            printProduct(lowestStock);
+            return true;
+        }
+        else{
+            System.out.println("Product not found.");
+            return false;
+        }
+    }
+
+    private void printProduct(int productId){
+        Product product = products.get(productId);
+        System.out.println(product);
     }
 
 }

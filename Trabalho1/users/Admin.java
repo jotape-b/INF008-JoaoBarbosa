@@ -17,7 +17,14 @@ public class Admin extends User{
     public boolean addProduct(String name, String description, float price, int inStock, String productType){
         return sessionManager.validateAddProduct(name, description, price, inStock, productType);
     }
-    //acessar relatórios
+
+    public boolean reportHighestOrderTotal(){
+        return sessionManager.validateReportHighestOrderTotal();
+    }
+
+    public boolean reportLowestStock(){
+        return sessionManager.validateReportLowestStock();
+    }
 
     //create new product
     //create new user
