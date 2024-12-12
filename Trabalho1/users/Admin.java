@@ -10,8 +10,8 @@ public class Admin extends User{
         this.sessionManager = sessionManager;
     }
     
-    public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
-        return sessionManager.validateAddUser(userType, name, email, password);
+    public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
+        return sessionManager.validateAddUser(userType, name, email, password, deliveryAddress);
     }
 
     public boolean addProduct(String name, String description, float price, int inStock, String productType){

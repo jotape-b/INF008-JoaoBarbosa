@@ -45,10 +45,10 @@ public class SessionManager {
 
     //ADMIN INTERFACE
 
-    public boolean validateAddUser(UserType userType, String name, String email, String password) throws Exception{
+    public boolean validateAddUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
         if(!isAdmin()) return false;
         System.out.println("User successfully registered.");
-        return userManager.addUser(userType, name, email, password);
+        return userManager.addUser(userType, name, email, password, deliveryAddress);
     }
 
     public boolean validateAddProduct(String name, String description, float price, int inStock, String productType){

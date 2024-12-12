@@ -8,14 +8,14 @@ public class UserManager{
     private SessionManager sessionManager;
     private final HashMap<String, User> users = new HashMap<String, User>();
     
-    public boolean addUser(UserType userType, String name, String email, String password) throws Exception{
+    public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
         if(users.containsKey(email)){
             System.out.println("Invalid register. E-mail already in use.");
             return false;
         }
         User newUser = (userType == UserType.ADMIN) 
             ? new Admin(userType, name, email, password, sessionManager)
-            : new Customer(userType, name, email, password, sessionManager);
+            : new Customer(userType, name, email, password, deliveryAddress, sessionManager);
         users.put(newUser.getEmail(), newUser);
         return true;
     }

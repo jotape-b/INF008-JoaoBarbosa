@@ -8,11 +8,11 @@ import auth.SessionManager;
 public class Customer extends User {
     private SessionManager sessionManager;
     private ArrayList<Order> orderHistory = new ArrayList<Order>();
-    private String address;
-
-    public Customer(UserType userType, String name, String email, String password, SessionManager sessionManager) throws Exception{
+    private String deliveryAddress;
+    public Customer(UserType userType, String name, String email, String password, String deliveryAddress, SessionManager sessionManager) throws Exception{
         super(userType, name, email, password);
         this.sessionManager = sessionManager;
+        this.deliveryAddress = deliveryAddress;
     }
 
     public boolean addToCart(int productId, int quantity){
