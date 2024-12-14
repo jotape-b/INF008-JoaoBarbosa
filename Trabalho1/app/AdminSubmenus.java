@@ -15,9 +15,10 @@ public class AdminSubmenus {
     OrderManager orderManager;
     ShoppingCart shoppingCart;
 
-    public AdminSubmenus(ProductManager productManager, UserManager userManager){
+    public AdminSubmenus(ProductManager productManager, UserManager userManager, OrderManager orderManager){
         this.productManager = productManager;
         this.userManager = userManager;
+        this.orderManager = orderManager;
     }
 
     protected void newProductMenu(){
@@ -75,8 +76,14 @@ public class AdminSubmenus {
 
     protected void mostExpensiveOrderReportMenu(){
         System.out.println("REPORT - MOST EXPENSIVE ORDER: \n");
-        
+        orderManager.reportHighestOrderTotal();
     }
+
+    protected void lowestStockReportMenu(){
+        System.out.println("REPORT - PRODUCT WITH LOWEST TOTAL STOCK: \n");
+        productManager.reportLowestStock();
+    }
+
     /*◦ Para usuários administradores:
     ▪ Create new product
     ▪ Create new user

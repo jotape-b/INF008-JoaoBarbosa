@@ -50,6 +50,10 @@ public class Menu {
                     adminSubmenus.newUserMenu();
                     break;
                 case 3:
+                    adminSubmenus.mostExpensiveOrderReportMenu();
+                    break;
+                case 4:
+                    adminSubmenus.lowestStockReportMenu();
                     break;
                 default:
                     System.out.println("Invalid entry.");

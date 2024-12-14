@@ -59,7 +59,7 @@ public class ProductManager {
             return true;
         }
         else{
-            System.out.println("Product not found.");
+            System.out.println("No products found.");
             return false;
         }
     }
