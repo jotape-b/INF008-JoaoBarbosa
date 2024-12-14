@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import shopping.ShoppingCart.CartItem;
 
-public class Order {
+public class Order implements Comparable<Order>{
     private static int idCounter = 0;
     private int id;
     private final HashMap<Integer, CartItem> items;
@@ -15,6 +15,11 @@ public class Order {
         this.date = LocalDate.now();
         this.total = total;
         this.items = new HashMap<>(items);
+    }
+
+    @Override
+    public int compareTo(Order other){
+        return Double.compare(other.total, this.total);
     }
 
     protected double getTotal(){

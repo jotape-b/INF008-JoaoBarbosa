@@ -1,6 +1,10 @@
 package users;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import shopping.Order;
 import shopping.OrderManager;
 import shopping.ProductManager;
 import shopping.ShoppingCart;
@@ -20,15 +24,9 @@ public class UserManager{
         User newUser = (userType == UserType.ADMIN) 
             ? new Admin(userType, name, email, password, this, productManager, orderManager)
             : new Customer(userType, name, email, password, deliveryAddress, shoppingCart);
-        if(newUser == null){
-            System.out.println("User registration failed.");
-            return false;
-        }
-        else{
-            System.out.println("User registration succcessful.");
-            users.put(newUser.getEmail(), newUser);
-            return true;
-        }
+        System.out.println("User registration succcessful.");
+        users.put(newUser.getEmail(), newUser);
+        return true;
     }
 
     public User authenticateUser(String insertedEmail, String insertedPassword) throws Exception{
@@ -41,5 +39,16 @@ public class UserManager{
             System.out.println("Login failed. Incorrect password or email."); 
             return null;
         }
+    }
+
+    public List<Customer> getCustomers(){
+        return users.values().stream()
+            .filter(user -> user instanceof Customer) 
+            .map(user -> (Customer) user) 
+            .toList(); 
+    }
+
+    public HashMap<String, User> getUsers(){
+        return users;
     }
 }

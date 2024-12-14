@@ -72,6 +72,11 @@ public class AdminSubmenus {
             isOperationFinished = userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager, shoppingCart);
         }while(isOperationFinished == false);
     }
+
+    protected void mostExpensiveOrderReportMenu(){
+        System.out.println("REPORT - MOST EXPENSIVE ORDER: \n");
+        
+    }
     /*◦ Para usuários administradores:
     ▪ Create new product
     ▪ Create new user

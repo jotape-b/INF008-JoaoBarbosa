@@ -49,6 +49,8 @@ public class Menu {
                 case 2:
                     adminSubmenus.newUserMenu();
                     break;
+                case 3:
+                    break;
                 default:
                     System.out.println("Invalid entry.");
                     break;

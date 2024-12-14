@@ -1,11 +1,12 @@
 package users;
 
-import java.util.ArrayList;
+import java.util.TreeSet;
+
 import shopping.Order;
 import shopping.ShoppingCart;
 
 public class Customer extends User {
-    private ArrayList<Order> orderHistory = new ArrayList<Order>();
+    private TreeSet<Order> orderHistory = new TreeSet<>();
     private ShoppingCart shoppingCart;
     private String deliveryAddress;
     public Customer(UserType userType, String name, String email, String password, String deliveryAddress, ShoppingCart shoppingCart) throws Exception{
@@ -32,7 +33,7 @@ public class Customer extends User {
         }
     }
 
-    public ArrayList<Order> getOrderHistory(){
+    public TreeSet<Order> getOrderHistory(){
         return orderHistory;
     }
 }
