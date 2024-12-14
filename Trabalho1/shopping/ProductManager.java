@@ -59,7 +59,7 @@ public class ProductManager {
             .map(Map.Entry::getKey)
             .orElse(null);
         if(lowestStock != null){
-            printProduct(lowestStock);
+            System.out.println(lowestStock);
             return true;
         }
         else{
@@ -68,9 +68,13 @@ public class ProductManager {
         }
     }
 
-    private void printProduct(int productId){
-        Product product = products.get(productId);
-        System.out.println(product);
+    private void printAllProducts(){
+        if(products.isEmpty()){
+            System.out.println("No products available.");
+            return;
+        }
+        System.out.println("------ PRODUCT LIST: ------\n");
+        products.values().forEach(product -> System.out.println(product + "\n"));
     }
 
 }
