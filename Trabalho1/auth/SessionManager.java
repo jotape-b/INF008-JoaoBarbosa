@@ -11,7 +11,7 @@ import users.UserType;
 
 public class SessionManager {
     
-    private static User loggedInUser;
+    public static User loggedInUser;
     private UserManager userManager;
     private ProductManager productManager;
     private ShoppingCart shoppingCart;

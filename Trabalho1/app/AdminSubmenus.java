@@ -18,7 +18,7 @@ public class AdminSubmenus {
         int stock;
         String category;
         boolean isOperationFinished = false;
-        System.out.println("INSERT PRODUCT DATA\n");
+        System.out.println("INSERT PRODUCT DATA");
 
         do{
             System.out.println("\nName: ");
@@ -29,6 +29,7 @@ public class AdminSubmenus {
                 price = scanner.nextDouble();
             System.out.println("\nStock: ");
                 stock = scanner.nextInt();
+                scanner.nextLine();
             System.out.println("\nCategory: ");
                 category = scanner.nextLine();
             isOperationFinished = productManager.addProduct(name, description, price, stock, category);

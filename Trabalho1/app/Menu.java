@@ -2,13 +2,14 @@ package app;
 import java.util.Scanner;
 
 import auth.SessionManager;
-import users.UserManager;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     private SessionManager sessionManager;
-    public Menu(SessionManager sessionManager){
+    private AdminSubmenus adminSubmenus;
+    public Menu(SessionManager sessionManager, AdminSubmenus adminSubmenus){
         this.sessionManager = sessionManager;
+        this.adminSubmenus = adminSubmenus;
     }
 
     protected void loginMenu() throws Exception{
@@ -33,7 +34,7 @@ public class Menu {
         do{
             System.out.println("-----------------------------\n");
             System.out.println("ADMIN MENU\n");
-            System.out.println("-----------------------------\n");
+            System.out.println("-----------------------------");
 
             System.out.println("\n1 - CREATE NEW PRODUCT");
             System.out.println("\n2 - CREATE NEW USER");
@@ -43,6 +44,11 @@ public class Menu {
             selectedOption = scanner.nextInt();
             switch(selectedOption){
                 case 1:
+                    adminSubmenus.newProductMenu();
+                    break;
+                default:
+                    System.out.println("Invalid entry.");
+                    break;
             }
         }while(selectedOption != 5);
 

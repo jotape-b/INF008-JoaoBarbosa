@@ -3,6 +3,7 @@ import auth.SessionManager;
 import shopping.OrderManager;
 import shopping.ProductManager;
 import shopping.ShoppingCart;
+import users.Admin;
 import users.UserManager;
 import users.UserType;
 public class Main{
@@ -13,8 +14,13 @@ public class Main{
         OrderManager orderManager = new OrderManager(null);
         SessionManager sessionManager = new SessionManager(userManager);
 
+        AdminSubmenus adminSubmenus = new AdminSubmenus(productManager);
+
         userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager, shoppingCart);
-        Menu menu = new Menu(sessionManager);
+        Menu menu = new Menu(sessionManager, adminSubmenus);
         menu.loginMenu();
+        if((SessionManager.loggedInUser instanceof Admin)){
+            menu.mainAdminMenu();
+        }
     }
 }
