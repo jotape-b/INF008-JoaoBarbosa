@@ -68,7 +68,7 @@ public class ProductManager {
         }
     }
 
-    private void printAllProducts(){
+    public void printAllProducts(){
         if(products.isEmpty()){
             System.out.println("No products available.");
             return;

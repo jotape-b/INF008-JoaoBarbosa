@@ -31,7 +31,7 @@ public class Menu {
 
     protected void mainAdminMenu() throws Exception{
         int selectedOption;
-        do{
+        while(true){
             System.out.println("-----------------------------\n");
             System.out.println("ADMIN MENU\n");
             System.out.println("-----------------------------");
@@ -55,12 +55,30 @@ public class Menu {
                 case 4:
                     adminSubmenus.lowestStockReportMenu();
                     break;
+                case 5:
+                    return;
                 default:
                     System.out.println("Invalid entry.");
                     break;
             }
-        }while(selectedOption != 5);
+        }
+    }
 
+    protected void mainCustomerMenu(){
+        int selectedOption;
+        while(true){
+            System.out.println("-----------------------------\n");
+            System.out.println("CUSTOMER MENU\n");
+            System.out.println("-----------------------------");
+            
+            System.out.println("\n1 - START NEW ORDER");
+            System.out.println("\n2 - EXIT");
+            selectedOption = scanner.nextInt();
+            switch(selectedOption){
+                case 1:
+                    break;
+            }
+        }
     }
 
             
