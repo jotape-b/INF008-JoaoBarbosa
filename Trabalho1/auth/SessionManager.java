@@ -23,8 +23,9 @@ public class SessionManager {
         this.shoppingCart = shoppingCart;
     }
 
-    public void login(String email, String password) throws Exception{
+    public boolean login(String email, String password) throws Exception{
         loggedInUser = userManager.authenticateUser(email, password);
+        return (loggedInUser != null);
     }
     
     public void logout(){
