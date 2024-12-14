@@ -6,7 +6,7 @@ import java.util.Map;
 public class ProductManager {
     protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
     
-    public boolean addProduct(String name, String description, float price, int stock, String productType){
+    public boolean addProduct(String name, String description, double price, int stock, String productType){
         Product newProduct = new Product(name, description, price, stock, productType);
         products.put(newProduct.getId(), newProduct);
         System.out.println("Product registered successfully.");

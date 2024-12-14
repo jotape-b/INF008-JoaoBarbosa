@@ -11,7 +11,7 @@ public class Menu {
         this.sessionManager = sessionManager;
     }
 
-    protected void mainUserMenu() throws Exception{
+    protected void loginMenu() throws Exception{
         String email, password;
         boolean isLoginFinished = false;
         
@@ -26,6 +26,26 @@ public class Menu {
             password = scanner.nextLine();
             isLoginFinished = sessionManager.login(email, password);
         }while (isLoginFinished == false);
+    }
+
+    protected void mainAdminMenu(){
+        int selectedOption;
+        do{
+            System.out.println("-----------------------------\n");
+            System.out.println("ADMIN MENU\n");
+            System.out.println("-----------------------------\n");
+
+            System.out.println("\n1 - CREATE NEW PRODUCT");
+            System.out.println("\n2 - CREATE NEW USER");
+            System.out.println("\n3 - REPORT: MOST EXPENSIVE ORDER");
+            System.out.println("\n4 - REPORT: PRODUCT WITH LOWEST INVENTORY");
+            System.out.println("\n5 - EXIT");
+            selectedOption = scanner.nextInt();
+            switch(selectedOption){
+                case 1:
+            }
+        }while(selectedOption != 5);
+
     }
 
             

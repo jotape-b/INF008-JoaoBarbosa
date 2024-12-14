@@ -15,6 +15,6 @@ public class Main{
 
         userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager, shoppingCart);
         Menu menu = new Menu(sessionManager);
-        menu.mainUserMenu();
+        menu.loginMenu();
     }
 }
