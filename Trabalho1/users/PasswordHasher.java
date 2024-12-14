@@ -25,7 +25,7 @@ public class PasswordHasher {
     public static String[] createHashWithSalt(String password) throws Exception{
         String salt = generateSalt();
         String hash = hashPassword(password, salt);
-        return new String[]{hash, salt};
+        return new String[]{salt, hash};
     }
 
     public static boolean verifyPassword(String insertedPassword, String expectedPassword, String salt) throws Exception{

@@ -2,29 +2,28 @@ package users;
 
 import java.util.ArrayList;
 import shopping.Order;
-
-import auth.SessionManager;
+import shopping.ShoppingCart;
 
 public class Customer extends User {
-    private SessionManager sessionManager;
     private ArrayList<Order> orderHistory = new ArrayList<Order>();
+    private ShoppingCart shoppingCart;
     private String deliveryAddress;
-    public Customer(UserType userType, String name, String email, String password, String deliveryAddress, SessionManager sessionManager) throws Exception{
+    public Customer(UserType userType, String name, String email, String password, String deliveryAddress, ShoppingCart shoppingCart) throws Exception{
         super(userType, name, email, password);
-        this.sessionManager = sessionManager;
         this.deliveryAddress = deliveryAddress;
+        this.shoppingCart = shoppingCart;
     }
 
     public boolean addToCart(int productId, int quantity){
-        return sessionManager.validateAddToCart(productId, quantity);
+        return shoppingCart.addToCart(productId, quantity);
     }
 
     public boolean removeFromCart(int itemId, int quantity){
-        return sessionManager.validateRemoveFromCart(itemId, quantity);
+        return shoppingCart.removeFromCart(itemId, quantity);
     }
 
     public void checkout(){
-        Order newOrder = sessionManager.validateCheckout();
+        Order newOrder = shoppingCart.checkout();
         if(newOrder == null){
             System.out.println("Invalid action. Order is empty.");
         }
@@ -36,11 +35,4 @@ public class Customer extends User {
     public ArrayList<Order> getOrderHistory(){
         return orderHistory;
     }
-
-    //start new order
-        //add product
-        //view shopping cart
-            //listar todos os produtos inclusos no carrinho de compras
-        //finish order
-    //exit
 }

@@ -1,6 +1,8 @@
 package app;
 import java.util.Scanner;
+
 import auth.SessionManager;
+import users.UserManager;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);

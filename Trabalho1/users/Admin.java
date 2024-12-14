@@ -1,29 +1,35 @@
 package users;
 
-import auth.SessionManager;
+import shopping.ProductManager;
+import shopping.ShoppingCart;
+import shopping.OrderManager;
 
 public class Admin extends User{
-    private SessionManager sessionManager;
+    private UserManager userManager;
+    private ProductManager productManager;
+    private OrderManager orderManager;
+    private ShoppingCart shoppingCart;
 
-    public Admin(UserType userType, String name, String email, String password, SessionManager sessionManager) throws Exception{
+    public Admin(UserType userType, String name, String email, String password, UserManager userManager, ProductManager productManager, OrderManager orderManager) throws Exception{
         super(userType, name, email, password);
-        this.sessionManager = sessionManager;
+        this.productManager = productManager;
+        this.orderManager = orderManager;
     }
     
     public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
-        return sessionManager.validateAddUser(userType, name, email, password, deliveryAddress);
+        return userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager, shoppingCart);
     }
 
     public boolean addProduct(String name, String description, float price, int inStock, String productType){
-        return sessionManager.validateAddProduct(name, description, price, inStock, productType);
+        return productManager.addProduct(name, description, price, inStock, productType);
     }
 
     public boolean reportHighestOrderTotal(){
-        return sessionManager.validateReportHighestOrderTotal();
+        return orderManager.reportHighestOrderTotal();
     }
 
     public boolean reportLowestStock(){
-        return sessionManager.validateReportLowestStock();
+        return productManager.reportLowestStock();
     }
 
     //create new product

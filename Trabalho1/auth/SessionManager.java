@@ -11,16 +11,14 @@ import users.UserType;
 
 public class SessionManager {
     
-    private User loggedInUser;
+    private static User loggedInUser;
     private UserManager userManager;
     private ProductManager productManager;
     private ShoppingCart shoppingCart;
     private OrderManager orderManager;
     
-    public SessionManager(UserManager userManager, ProductManager productManager, ShoppingCart shoppingCart) {
+    public SessionManager(UserManager userManager) {
         this.userManager = userManager;
-        this.productManager = productManager;
-        this.shoppingCart = shoppingCart;
     }
 
     public boolean login(String email, String password) throws Exception{
@@ -32,7 +30,7 @@ public class SessionManager {
         loggedInUser = null;
     }
     
-    private boolean isAdmin(){
+    private static boolean isAdmin(){
         if(!(loggedInUser instanceof Admin)){
             System.out.println("Invalid action. User is not administrator.");
             return false;
@@ -40,10 +38,10 @@ public class SessionManager {
         return true;
     }
 
-    private boolean isLoggedIn(){
+    private static boolean isLoggedIn(){
         return (loggedInUser != null);
     }
-
+    /*
     //ADMIN INTERFACE
 
     public boolean validateAddUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
@@ -88,5 +86,7 @@ public class SessionManager {
         return shoppingCart.checkout();
     }
 
+
+    */
     
 }
