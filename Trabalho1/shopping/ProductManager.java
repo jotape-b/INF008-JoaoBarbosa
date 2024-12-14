@@ -53,10 +53,10 @@ public class ProductManager {
     }
 
     public boolean reportLowestStock(){
-        Integer lowestStock = products.entrySet()
+        Product lowestStock = products.entrySet()
             .stream()
             .min(Comparator.comparingInt(entry -> entry.getValue().getStock()))
-            .map(Map.Entry::getKey)
+            .map(Map.Entry::getValue)
             .orElse(null);
         if(lowestStock != null){
             System.out.println(lowestStock);

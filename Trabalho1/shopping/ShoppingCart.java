@@ -12,8 +12,14 @@ public class ShoppingCart {
     }
     
     public boolean addToCart(int productId, int quantity){
-        if(!(productManager.doesProductExist(productId))) return false;
-        if(!(isThereEnoughStock(productId, quantity))) return false;
+        if(!(productManager.doesProductExist(productId))){
+            System.out.println("Product not found.");
+            return false;
+        } 
+        if(!(isThereEnoughStock(productId, quantity))){
+            System.out.println("Quantity not valid.");
+            return false;
+        } 
 
         Product product = productManager.products.get(productId);
         CartItem item = cart.get(productId);
@@ -24,6 +30,7 @@ public class ShoppingCart {
         else{
             cart.put(productId, new CartItem(product, quantity));
         }
+        System.out.println("Product successfully added to shopping cart.");
         return true;
     }
 

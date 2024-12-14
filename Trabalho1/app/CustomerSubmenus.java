@@ -5,10 +5,17 @@ import java.util.Scanner;
 import javax.swing.text.View;
 
 import shopping.ProductManager;
+import shopping.ShoppingCart;
 
 public class CustomerSubmenus {
     Scanner scanner = new Scanner(System.in);
     ProductManager productManager = new ProductManager();
+    ShoppingCart shoppingCart = new ShoppingCart(productManager);
+
+    public CustomerSubmenus(ProductManager productManager, ShoppingCart shoppingCart){
+        this.productManager = productManager;
+        this.shoppingCart = shoppingCart;
+    }
 
     protected void newOrderMenu(){
         int selectedOption;
@@ -21,11 +28,24 @@ public class CustomerSubmenus {
             selectedOption = scanner.nextInt();
             switch(selectedOption){
                 case 1:
-                    
+                    addProductToCartMenu();
                     break;
             }
         }
 
+    }
+
+    protected void addProductToCartMenu(){
+        int productId, quantity;
+        boolean isOperationFinished = false;
+
+        do{
+            System.out.println("PRODUCT ID: ");
+            productId = scanner.nextInt();
+            System.out.println("QUANTITY TO BE ADDED: ");
+            quantity = scanner.nextInt();
+            isOperationFinished = shoppingCart.addToCart(productId, quantity);
+        }while(isOperationFinished == false);
     }
 
     /*◦ Para usuários clientes:

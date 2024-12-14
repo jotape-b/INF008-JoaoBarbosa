@@ -7,9 +7,11 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     private SessionManager sessionManager;
     private AdminSubmenus adminSubmenus;
-    public Menu(SessionManager sessionManager, AdminSubmenus adminSubmenus){
+    private CustomerSubmenus customerSubmenus;
+    public Menu(SessionManager sessionManager, AdminSubmenus adminSubmenus, CustomerSubmenus customerSubmenus){
         this.sessionManager = sessionManager;
         this.adminSubmenus = adminSubmenus;
+        this.customerSubmenus = customerSubmenus;
     }
 
     protected void loginMenu() throws Exception{
@@ -56,6 +58,7 @@ public class Menu {
                     adminSubmenus.lowestStockReportMenu();
                     break;
                 case 5:
+                    logoutMenu();
                     return;
                 default:
                     System.out.println("Invalid entry.");
@@ -76,8 +79,25 @@ public class Menu {
             selectedOption = scanner.nextInt();
             switch(selectedOption){
                 case 1:
+                    customerSubmenus.newOrderMenu();
                     break;
             }
+        }
+    }
+
+    protected void logoutMenu(){
+        int selectedOption;
+        System.out.println("DO YOU WISH TO LOGOUT?\n");
+
+        System.out.println("\n1 - YES, LOG ME OUT.");
+        System.out.println("\n2 - NO, TAKE ME BACK TO THE MAIN MENU.");
+        System.out.println("\n3 - QUIT THE SYSTEM ALTOGETHER.");
+        selectedOption = scanner.nextInt();
+        scanner.nextLine();
+        switch(selectedOption){
+            case 1:
+                sessionManager.logout();
+                break;
         }
     }
 
