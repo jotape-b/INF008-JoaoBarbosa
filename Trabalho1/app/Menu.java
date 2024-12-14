@@ -5,10 +5,14 @@ import auth.SessionManager;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     private SessionManager sessionManager;
+    public Menu(SessionManager sessionManager){
+        this.sessionManager = sessionManager;
+    }
 
     protected void mainUserMenu() throws Exception{
         String email, password;
         boolean isLoginFinished = false;
+        
         do{
             System.out.println("-----------------------------\n");
             System.out.println("WELCOME!\n");
