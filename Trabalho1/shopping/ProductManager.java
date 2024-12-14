@@ -7,6 +7,10 @@ public class ProductManager {
     protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
     
     public boolean addProduct(String name, String description, double price, int stock, String productType){
+        if(stock < 1){
+            System.out.println("Invalid stock. Registration failed.");
+            return false;
+        }
         Product newProduct = new Product(name, description, price, stock, productType);
         products.put(newProduct.getId(), newProduct);
         System.out.println("Product registered successfully.");

@@ -10,7 +10,7 @@ public class Product {
     private String productType;
 
     public Product(String name, String description, double price, int stock, String productType){
-        this.id = idCounter++;
+        this.id = ++idCounter;
         this.name = name;
         this.description = description;
         this.price = price;
