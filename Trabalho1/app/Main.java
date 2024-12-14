@@ -14,7 +14,7 @@ public class Main{
         OrderManager orderManager = new OrderManager(null);
         SessionManager sessionManager = new SessionManager(userManager);
 
-        AdminSubmenus adminSubmenus = new AdminSubmenus(productManager);
+        AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager);
 
         userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager, shoppingCart);
         Menu menu = new Menu(sessionManager, adminSubmenus);

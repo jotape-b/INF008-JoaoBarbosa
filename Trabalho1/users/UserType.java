@@ -1,3 +1,3 @@
 package users;
 
-public enum UserType{USER, ADMIN}
+public enum UserType{CUSTOMER, ADMIN}

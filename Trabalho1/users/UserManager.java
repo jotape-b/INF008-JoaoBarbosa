@@ -20,8 +20,15 @@ public class UserManager{
         User newUser = (userType == UserType.ADMIN) 
             ? new Admin(userType, name, email, password, this, productManager, orderManager)
             : new Customer(userType, name, email, password, deliveryAddress, shoppingCart);
-        users.put(newUser.getEmail(), newUser);
-        return true;
+        if(newUser == null){
+            System.out.println("User registration failed.");
+            return false;
+        }
+        else{
+            System.out.println("User registration succcessful.");
+            users.put(newUser.getEmail(), newUser);
+            return true;
+        }
     }
 
     public User authenticateUser(String insertedEmail, String insertedPassword) throws Exception{

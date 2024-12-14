@@ -29,7 +29,7 @@ public class Menu {
         }while (isLoginFinished == false);
     }
 
-    protected void mainAdminMenu(){
+    protected void mainAdminMenu() throws Exception{
         int selectedOption;
         do{
             System.out.println("-----------------------------\n");
@@ -45,6 +45,9 @@ public class Menu {
             switch(selectedOption){
                 case 1:
                     adminSubmenus.newProductMenu();
+                    break;
+                case 2:
+                    adminSubmenus.newUserMenu();
                     break;
                 default:
                     System.out.println("Invalid entry.");
