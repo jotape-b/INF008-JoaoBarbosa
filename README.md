@@ -1,2 +1,6 @@
 # INF008-JoaoBarbosa
-Repositório para armazenar os trabalhos e atividades da matéria INF008 (POO) do tecnólogo de ADS no IFBA.
+Instruções de compilação (com cmd):
+
+1. Navegue até a pasta Trabalho1 (cd Trabalho1)
+2. Digite "javac app/Main.java" para compilar o código
+3. Execute com "java app.Main"
