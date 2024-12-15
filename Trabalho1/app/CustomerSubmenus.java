@@ -34,6 +34,12 @@ public class CustomerSubmenus {
                 case 2:
                     viewShoppingCartMenu();
                     break;
+                case 3:
+                    checkoutMenu();
+                    return;
+                default:
+                    System.out.println("Invalid entry.");
+                    break;
             }
         }
 
@@ -53,6 +59,12 @@ public class CustomerSubmenus {
 
     protected void viewShoppingCartMenu() throws IOException{
         shoppingCart.printShoppingCart();
+        System.out.println("Press any key to exit.");
+        System.in.read();
+    }
+
+    protected void checkoutMenu() throws IOException{
+        shoppingCart.checkout();
         System.out.println("Press any key to exit.");
         System.in.read();
     }

@@ -66,7 +66,10 @@ public class ShoppingCart {
     }
 
     public Order checkout(){
-        if(cart.isEmpty()) return null;
+        if(cart.isEmpty()){ 
+            System.out.println("Cart is empty.");    
+            return null;
+        }
 
         double total = calculateTotalPrice();
         for(CartItem item : cart.values()){
@@ -74,6 +77,7 @@ public class ShoppingCart {
         }
         Order order = new Order(cart, total);
         cart.clear();
+        System.out.println("Checkout successful.");
         return order;
     }
 

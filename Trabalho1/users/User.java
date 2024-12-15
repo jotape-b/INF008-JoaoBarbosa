@@ -10,7 +10,7 @@ public class User {
     private String password;
 
     public User(UserType userType, String name, String email, String password) throws Exception{
-        this.id = idCounter++;
+        this.id = ++idCounter;
         this.userType = userType;
         this.name = name;
         this.email = email;

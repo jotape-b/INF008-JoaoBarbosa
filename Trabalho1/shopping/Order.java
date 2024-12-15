@@ -11,7 +11,7 @@ public class Order implements Comparable<Order>{
     private final double total;
 
     public Order(HashMap<Integer, CartItem> items, double total){
-        this.id = idCounter++;
+        this.id = ++idCounter;
         this.date = LocalDate.now();
         this.total = total;
         this.items = new HashMap<>(items);
