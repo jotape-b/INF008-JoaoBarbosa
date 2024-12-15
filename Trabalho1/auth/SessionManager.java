@@ -1,21 +1,13 @@
 package auth;
 
-import shopping.Order;
-import shopping.OrderManager;
-import shopping.ProductManager;
-import shopping.ShoppingCart;
 import users.Admin;
 import users.User;
 import users.UserManager;
-import users.UserType;
 
 public class SessionManager {
     
     public static User loggedInUser;
     private UserManager userManager;
-    private ProductManager productManager;
-    private ShoppingCart shoppingCart;
-    private OrderManager orderManager;
     
     public SessionManager(UserManager userManager) {
         this.userManager = userManager;
