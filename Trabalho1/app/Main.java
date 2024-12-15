@@ -1,18 +1,10 @@
 package app;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
 
 import auth.SessionManager;
 import shopping.OrderManager;
-import shopping.Product;
 import shopping.ProductManager;
 import users.Admin;
 import users.Customer;
-import users.User;
 import users.UserManager;
 import users.UserType;
 public class Main{

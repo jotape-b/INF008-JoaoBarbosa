@@ -3,8 +3,6 @@ package app;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.text.View;
-
 import shopping.ProductManager;
 import shopping.ShoppingCart;
 import users.Customer;
