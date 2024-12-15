@@ -14,16 +14,15 @@ public class UserManager{
     private final HashMap<String, User> users = new HashMap<String, User>();
     private ProductManager productManager;
     private OrderManager orderManager;
-    private ShoppingCart shoppingCart;
         
-    public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress, ProductManager productManager, OrderManager orderManager, ShoppingCart shoppingCart) throws Exception{
+    public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress, ProductManager productManager, OrderManager orderManager) throws Exception{
         if(users.containsKey(email)){
             System.out.println("Invalid register. E-mail already in use.");
             return false;
         }
         User newUser = (userType == UserType.ADMIN) 
             ? new Admin(userType, name, email, password, this, productManager, orderManager)
-            : new Customer(userType, name, email, password, deliveryAddress, shoppingCart);
+            : new Customer(userType, name, email, password, deliveryAddress, productManager);
         System.out.println("User registration succcessful.");
         users.put(newUser.getEmail(), newUser);
         return true;

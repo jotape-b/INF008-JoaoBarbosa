@@ -70,7 +70,7 @@ public class AdminSubmenus {
                 System.out.println("\nDelivery Address: ");
                 deliveryAddress = scanner.nextLine();
             }
-            isOperationFinished = userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager, shoppingCart);
+            isOperationFinished = userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager);
         }while(isOperationFinished == false);
     }
 

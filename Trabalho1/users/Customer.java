@@ -3,16 +3,17 @@ package users;
 import java.util.TreeSet;
 
 import shopping.Order;
+import shopping.ProductManager;
 import shopping.ShoppingCart;
 
 public class Customer extends User {
     private TreeSet<Order> orderHistory = new TreeSet<>();
-    private ShoppingCart shoppingCart;
+    ShoppingCart shoppingCart;
     private String deliveryAddress;
-    public Customer(UserType userType, String name, String email, String password, String deliveryAddress, ShoppingCart shoppingCart) throws Exception{
+    public Customer(UserType userType, String name, String email, String password, String deliveryAddress, ProductManager productManager) throws Exception{
         super(userType, name, email, password);
         this.deliveryAddress = deliveryAddress;
-        this.shoppingCart = shoppingCart;
+        this.shoppingCart = new ShoppingCart(productManager);
     }
 
     public boolean addToCart(int productId, int quantity){
@@ -31,6 +32,10 @@ public class Customer extends User {
         else{
             orderHistory.add(newOrder);
         }
+    }
+
+    public ShoppingCart getShoppingCart(){
+        return shoppingCart;
     }
 
     public TreeSet<Order> getOrderHistory(){

@@ -17,7 +17,7 @@ public class Admin extends User{
     }
     
     public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress) throws Exception{
-        return userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager, shoppingCart);
+        return userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager);
     }
 
     public boolean addProduct(String name, String description, float price, int inStock, String productType){

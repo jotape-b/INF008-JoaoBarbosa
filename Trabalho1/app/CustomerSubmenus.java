@@ -7,15 +7,18 @@ import javax.swing.text.View;
 
 import shopping.ProductManager;
 import shopping.ShoppingCart;
+import users.Customer;
 
 public class CustomerSubmenus {
     Scanner scanner = new Scanner(System.in);
     ProductManager productManager = new ProductManager();
-    ShoppingCart shoppingCart = new ShoppingCart(productManager);
+    ShoppingCart shoppingCart;
+    Customer customer;
 
-    public CustomerSubmenus(ProductManager productManager, ShoppingCart shoppingCart){
+    public CustomerSubmenus(ProductManager productManager, Customer customer){
         this.productManager = productManager;
-        this.shoppingCart = shoppingCart;
+        this.customer = customer;
+        this.shoppingCart = customer.getShoppingCart();
     }
 
     protected void newOrderMenu() throws IOException{
@@ -53,7 +56,7 @@ public class CustomerSubmenus {
             productId = scanner.nextInt();
             System.out.println("QUANTITY TO BE ADDED: ");
             quantity = scanner.nextInt();
-            isOperationFinished = shoppingCart.addToCart(productId, quantity);
+            isOperationFinished = customer.addToCart(productId, quantity);
         }while(isOperationFinished == false);
     }
 
@@ -64,7 +67,7 @@ public class CustomerSubmenus {
     }
 
     protected void checkoutMenu() throws IOException{
-        shoppingCart.checkout();
+        customer.checkout();
         System.out.println("Press any key to exit.");
         System.in.read();
     }

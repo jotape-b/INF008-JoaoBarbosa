@@ -2,34 +2,15 @@ package app;
 import java.io.IOException;
 import java.util.Scanner;
 
-import auth.SessionManager;
-
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    private SessionManager sessionManager;
+    private LoginSubmenus loginSubmenus;
     private AdminSubmenus adminSubmenus;
     private CustomerSubmenus customerSubmenus;
-    public Menu(SessionManager sessionManager, AdminSubmenus adminSubmenus, CustomerSubmenus customerSubmenus){
-        this.sessionManager = sessionManager;
+    public Menu(LoginSubmenus loginSubmenus, AdminSubmenus adminSubmenus, CustomerSubmenus customerSubmenus){
+        this.loginSubmenus = loginSubmenus;
         this.adminSubmenus = adminSubmenus;
         this.customerSubmenus = customerSubmenus;
-    }
-
-    protected void loginMenu() throws Exception{
-        String email, password;
-        boolean isLoginFinished = false;
-        
-        do{
-            System.out.println("-----------------------------\n");
-            System.out.println("WELCOME!\n");
-            System.out.println("PLEASE LOG-IN TO ACCESS THE SYSTEM.\n");
-            System.out.println("\n");
-            System.out.println("Email: ");
-            email = scanner.nextLine();
-            System.out.println("\nPassword: ");
-            password = scanner.nextLine();
-            isLoginFinished = sessionManager.login(email, password);
-        }while (isLoginFinished == false);
     }
 
     protected void mainAdminMenu() throws Exception{
@@ -59,7 +40,7 @@ public class Menu {
                     adminSubmenus.lowestStockReportMenu();
                     break;
                 case 5:
-                    logoutMenu();
+                    loginSubmenus.logoutMenu();
                     return;
                 default:
                     System.out.println("Invalid entry.");
@@ -83,22 +64,6 @@ public class Menu {
                     customerSubmenus.newOrderMenu();
                     break;
             }
-        }
-    }
-
-    protected void logoutMenu(){
-        int selectedOption;
-        System.out.println("DO YOU WISH TO LOGOUT?\n");
-
-        System.out.println("\n1 - YES, LOG ME OUT.");
-        System.out.println("\n2 - NO, TAKE ME BACK TO THE MAIN MENU.");
-        System.out.println("\n3 - QUIT THE SYSTEM ALTOGETHER.");
-        selectedOption = scanner.nextInt();
-        scanner.nextLine();
-        switch(selectedOption){
-            case 1:
-                sessionManager.logout();
-                break;
         }
     }
 
