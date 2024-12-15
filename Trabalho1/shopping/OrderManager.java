@@ -17,9 +17,15 @@ public class OrderManager implements Serializable{
     public boolean reportHighestOrderTotal() {
         List<Customer> customers = userManager.getCustomers();
         Optional<Order> highestOrder = customers.stream()
-            .map(customer -> customer.getOrderHistory().first())
+            .map(customer -> {
+                if (!customer.getOrderHistory().isEmpty()) {
+                    return customer.getOrderHistory().first();
+                }
+                return null;
+            })
+            .filter(order -> order != null)
             .max(Comparator.comparing(Order::getTotal));
-    
+        
         if (highestOrder.isPresent()) {
             printOrder(highestOrder.get());
             return true;
@@ -28,6 +34,7 @@ public class OrderManager implements Serializable{
             return false;
         }
     }
+    
     
     private void printOrder(Order order){
         System.out.println(order);
