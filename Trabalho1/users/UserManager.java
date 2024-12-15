@@ -47,8 +47,8 @@ public class UserManager implements Serializable{
         return users;
     }
 
-    public void setUsers(HashMap<String, User> users) {
+    /*public void setUsers(HashMap<String, User> loadedUsers) {
         this.users.clear();
-        this.users.putAll(users);
-    }
+        this.users.putAll(loadedUsers);
+    }*/
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductManager implements Serializable{
-    protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
+    protected final HashMap<Integer, Product> products = new HashMap<Integer, Product>();
     
     public boolean addProduct(String name, String description, double price, int stock, String productType){
         if(stock < 1){
@@ -82,9 +82,9 @@ public class ProductManager implements Serializable{
         return products;
     }
 
-    public void setProducts(HashMap<Integer, Product> products) {
+    /*public void setProducts(HashMap<Integer, Product> loadedProducts) {
         this.products.clear(); 
-        this.products.putAll(products);
-    }
+        this.products.putAll(loadedProducts);
+    }*/
 
 }

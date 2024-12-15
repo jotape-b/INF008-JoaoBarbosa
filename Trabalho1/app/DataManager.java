@@ -23,14 +23,28 @@ public class DataManager {
         }
     }
 
-    public void loadData(UserManager userManager, ProductManager productManager){
-        try(FileInputStream fis = new FileInputStream("newfile.txt");
-        ObjectInputStream ois = new ObjectInputStream(fis)){
-            userManager.setUsers((HashMap<String, User>) ois.readObject());
-            productManager.setProducts((HashMap<Integer, Product>) ois.readObject());
-            System.out.println("Data loaded successfully.");
-        } catch (Exception e){
+    public void loadData(UserManager userManager, ProductManager productManager) {
+        try (FileInputStream fis = new FileInputStream("newfile.txt");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+    
+            HashMap<String, User> loadedUsers = (HashMap<String, User>) ois.readObject();
+            HashMap<Integer, Product> loadedProducts = (HashMap<Integer, Product>) ois.readObject();
+    
+            loadedUsers.forEach((email, user) -> {
+                if (!userManager.getUsers().containsKey(email)) {
+                    userManager.getUsers().put(email, user);
+                }
+            });
+    
+            loadedProducts.forEach((id, product) -> {
+                if (!productManager.getProducts().containsKey(id)) {
+                    productManager.getProducts().put(id, product);
+                }
+            });
+    
+            System.out.println("Data loaded and merged successfully.");
+        } catch (Exception e) {
             System.out.println("No data found.");
         }
-    }    
+    }  
 }
