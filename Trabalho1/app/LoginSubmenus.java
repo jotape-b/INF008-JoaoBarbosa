@@ -44,6 +44,10 @@ public class LoginSubmenus {
             case 1:
                 sessionManager.logout();
                 break;
+            case 2:
+                break;
+            case 3:
+                System.exit(0);
         }
     }
 }

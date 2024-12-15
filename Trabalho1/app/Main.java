@@ -18,12 +18,12 @@ public class Main{
 
         while(SessionManager.loggedInUser == null){
             loginSubmenus.loginMenu();
-            if(SessionManager.loggedInUser instanceof Customer){
+            while(SessionManager.loggedInUser instanceof Customer){
                 CustomerSubmenus customerSubmenus = new CustomerSubmenus(productManager, (Customer) SessionManager.loggedInUser);
                 Menu menu = new Menu(loginSubmenus, null, customerSubmenus);
                 menu.mainCustomerMenu();
             }
-            else if(SessionManager.loggedInUser instanceof Admin){
+            while(SessionManager.loggedInUser instanceof Admin){
                 AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager, orderManager, (Admin) SessionManager.loggedInUser);
                 Menu menu = new Menu(loginSubmenus, adminSubmenus, null);
                 menu.mainAdminMenu();
