@@ -1,8 +1,10 @@
 package app;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import auth.SessionManager;
+import shopping.ProductManager;
 import users.UserManager;
 
 public class LoginSubmenus {
@@ -31,7 +33,7 @@ public class LoginSubmenus {
         }while (isLoginFinished == false);
     }
 
-    protected void logoutMenu(){
+    protected boolean logoutMenu(DataManager dataManager, UserManager userManager, ProductManager productManager) throws IOException{
         int selectedOption;
         System.out.println("DO YOU WISH TO LOGOUT?\n");
 
@@ -40,14 +42,19 @@ public class LoginSubmenus {
         System.out.println("\n3 - QUIT THE SYSTEM ALTOGETHER.");
         selectedOption = scanner.nextInt();
         scanner.nextLine();
-        switch(selectedOption){
-            case 1:
-                sessionManager.logout();
-                break;
-            case 2:
-                break;
-            case 3:
-                System.exit(0);
+        while(true){
+            switch(selectedOption){
+                case 1:
+                    sessionManager.logout();
+                    return true;
+                case 2:
+                    return false;
+                case 3:
+                    dataManager.saveData(userManager, productManager);
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid entry.");
+            }
         }
     }
 }

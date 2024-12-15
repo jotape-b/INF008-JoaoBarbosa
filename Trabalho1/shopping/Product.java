@@ -1,6 +1,8 @@
 package shopping;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
     private static int idCounter = 0;
     private int id;
     private String name;

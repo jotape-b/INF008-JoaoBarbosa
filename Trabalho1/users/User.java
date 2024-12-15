@@ -1,6 +1,8 @@
 package users;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
     private static int idCounter = 0;
     private int id;
     private UserType userType;

@@ -1,19 +1,15 @@
 package users;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-import shopping.Order;
 import shopping.OrderManager;
 import shopping.ProductManager;
-import shopping.ShoppingCart;
 
-public class UserManager{
+public class UserManager implements Serializable{
     
     private final HashMap<String, User> users = new HashMap<String, User>();
-    private ProductManager productManager;
-    private OrderManager orderManager;
         
     public boolean addUser(UserType userType, String name, String email, String password, String deliveryAddress, ProductManager productManager, OrderManager orderManager) throws Exception{
         if(users.containsKey(email)){
@@ -49,5 +45,10 @@ public class UserManager{
 
     public HashMap<String, User> getUsers(){
         return users;
+    }
+
+    public void setUsers(HashMap<String, User> users) {
+        this.users.clear();
+        this.users.putAll(users);
     }
 }

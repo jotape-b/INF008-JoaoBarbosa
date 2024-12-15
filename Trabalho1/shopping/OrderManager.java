@@ -1,4 +1,5 @@
 package shopping;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +7,7 @@ import java.util.Optional;
 import users.Customer;
 import users.UserManager;
 
-public class OrderManager {
+public class OrderManager implements Serializable{
     private UserManager userManager;
 
     public OrderManager(UserManager userManager){

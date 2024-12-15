@@ -1,9 +1,18 @@
 package app;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+
 import auth.SessionManager;
 import shopping.OrderManager;
+import shopping.Product;
 import shopping.ProductManager;
 import users.Admin;
 import users.Customer;
+import users.User;
 import users.UserManager;
 import users.UserType;
 public class Main{
@@ -12,21 +21,31 @@ public class Main{
         UserManager userManager = new UserManager();
         OrderManager orderManager = new OrderManager(userManager);
         SessionManager sessionManager = new SessionManager(userManager);
-
-        userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager);
+        DataManager dataManager = new DataManager();
         LoginSubmenus loginSubmenus = new LoginSubmenus(sessionManager);
 
-        while(SessionManager.loggedInUser == null){
-            loginSubmenus.loginMenu();
+        dataManager.loadData(userManager, productManager);
+
+        userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager);
+
+        boolean logout = false;
+        while(true){
+            if(SessionManager.loggedInUser == null){
+                loginSubmenus.loginMenu();
+                logout = false;
+            }
             while(SessionManager.loggedInUser instanceof Customer){
                 CustomerSubmenus customerSubmenus = new CustomerSubmenus(productManager, (Customer) SessionManager.loggedInUser);
-                Menu menu = new Menu(loginSubmenus, null, customerSubmenus);
+                Menu menu = new Menu(null, customerSubmenus);
                 menu.mainCustomerMenu();
             }
-            while(SessionManager.loggedInUser instanceof Admin){
+            while(SessionManager.loggedInUser instanceof Admin && logout == false){
                 AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager, orderManager, (Admin) SessionManager.loggedInUser);
-                Menu menu = new Menu(loginSubmenus, adminSubmenus, null);
-                menu.mainAdminMenu();
+                Menu menu = new Menu(adminSubmenus, null);
+                logout = menu.mainAdminMenu();
+            }
+            if(logout == true){
+                logout = loginSubmenus.logoutMenu(dataManager, userManager, productManager);
             }
         }
     }

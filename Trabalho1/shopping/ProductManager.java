@@ -1,9 +1,10 @@
 package shopping;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductManager {
+public class ProductManager implements Serializable{
     protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
     
     public boolean addProduct(String name, String description, double price, int stock, String productType){
@@ -75,6 +76,15 @@ public class ProductManager {
         }
         System.out.println("------ PRODUCT LIST: ------\n");
         products.values().forEach(product -> System.out.println(product + "\n"));
+    }
+
+    public HashMap<Integer, Product> getProducts(){
+        return products;
+    }
+
+    public void setProducts(HashMap<Integer, Product> products) {
+        this.products.clear(); 
+        this.products.putAll(products);
     }
 
 }

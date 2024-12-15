@@ -4,16 +4,14 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    private LoginSubmenus loginSubmenus;
     private AdminSubmenus adminSubmenus;
     private CustomerSubmenus customerSubmenus;
-    public Menu(LoginSubmenus loginSubmenus, AdminSubmenus adminSubmenus, CustomerSubmenus customerSubmenus){
-        this.loginSubmenus = loginSubmenus;
+    public Menu(AdminSubmenus adminSubmenus, CustomerSubmenus customerSubmenus){
         this.adminSubmenus = adminSubmenus;
         this.customerSubmenus = customerSubmenus;
     }
 
-    protected void mainAdminMenu() throws Exception{
+    protected boolean mainAdminMenu() throws Exception{
         int selectedOption;
         while(true){
             System.out.println("-----------------------------\n");
@@ -40,8 +38,7 @@ public class Menu {
                     adminSubmenus.lowestStockReportMenu();
                     break;
                 case 5:
-                    loginSubmenus.logoutMenu();
-                    return;
+                    return true;
                 default:
                     System.out.println("Invalid entry.");
                     break;
@@ -64,7 +61,6 @@ public class Menu {
                     customerSubmenus.newOrderMenu();
                     break;
                 case 2:
-                    loginSubmenus.logoutMenu();
                     return;
                 default:
                     System.out.println("Invalid entry.");

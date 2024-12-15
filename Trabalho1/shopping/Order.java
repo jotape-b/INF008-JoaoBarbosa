@@ -1,9 +1,10 @@
 package shopping;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import shopping.ShoppingCart.CartItem;
 
-public class Order implements Comparable<Order>{
+public class Order implements Comparable<Order>, Serializable{
     private static int idCounter = 0;
     private int id;
     private final HashMap<Integer, CartItem> items;
