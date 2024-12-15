@@ -77,6 +77,15 @@ public class ShoppingCart {
         return order;
     }
 
+    public void printShoppingCart(){
+        if(cart.isEmpty()){
+            System.out.println("Cart is empty.");
+            return;
+        }
+        System.out.println("------ SHOPPING CART: ------\n");
+        cart.values().forEach(item -> System.out.println(item + "\n"));
+    }
+
 
     public static class CartItem{
         private Product product;
@@ -105,7 +114,7 @@ public class ShoppingCart {
 
         @Override
         public String toString(){
-            return "Product " + product.getId() + ":" + product.getName() + ", Quantity: " + quantity;
+            return "Product " + product.getId() + ": " + product.getName() + ", Quantity: " + quantity;
         }
 
     }

@@ -1,4 +1,5 @@
 package app;
+import java.io.IOException;
 import java.util.Scanner;
 
 import auth.SessionManager;
@@ -67,7 +68,7 @@ public class Menu {
         }
     }
 
-    protected void mainCustomerMenu(){
+    protected void mainCustomerMenu() throws IOException{
         int selectedOption;
         while(true){
             System.out.println("-----------------------------\n");

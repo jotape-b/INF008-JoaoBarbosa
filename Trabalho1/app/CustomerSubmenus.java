@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.text.View;
@@ -17,7 +18,7 @@ public class CustomerSubmenus {
         this.shoppingCart = shoppingCart;
     }
 
-    protected void newOrderMenu(){
+    protected void newOrderMenu() throws IOException{
         int selectedOption;
         while(true){
             productManager.printAllProducts();
@@ -30,6 +31,9 @@ public class CustomerSubmenus {
                 case 1:
                     addProductToCartMenu();
                     break;
+                case 2:
+                    viewShoppingCartMenu();
+                    break;
             }
         }
 
@@ -38,7 +42,6 @@ public class CustomerSubmenus {
     protected void addProductToCartMenu(){
         int productId, quantity;
         boolean isOperationFinished = false;
-
         do{
             System.out.println("PRODUCT ID: ");
             productId = scanner.nextInt();
@@ -46,6 +49,12 @@ public class CustomerSubmenus {
             quantity = scanner.nextInt();
             isOperationFinished = shoppingCart.addToCart(productId, quantity);
         }while(isOperationFinished == false);
+    }
+
+    protected void viewShoppingCartMenu() throws IOException{
+        shoppingCart.printShoppingCart();
+        System.out.println("Press any key to exit.");
+        System.in.read();
     }
 
     /*◦ Para usuários clientes:
