@@ -15,12 +15,12 @@ import users.UserManager;
 public class DataManager {
 
     public void saveData(UserManager userManager, ProductManager productManager) throws IOException{
-        FileOutputStream fos = new FileOutputStream("newfile.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(userManager.getUsers());
-        oos.writeObject(productManager.getProducts());
-        oos.flush();
-        oos.close();
+        try(FileOutputStream fos = new FileOutputStream("newfile.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(userManager.getUsers());
+            oos.writeObject(productManager.getProducts());
+            oos.flush();
+        }
     }
 
     public void loadData(UserManager userManager, ProductManager productManager){

@@ -26,10 +26,10 @@ public class Main{
                 loginSubmenus.loginMenu();
                 logout = false;
             }
-            while(SessionManager.loggedInUser instanceof Customer){
+            while(SessionManager.loggedInUser instanceof Customer && logout == false){
                 CustomerSubmenus customerSubmenus = new CustomerSubmenus(productManager, (Customer) SessionManager.loggedInUser);
                 Menu menu = new Menu(null, customerSubmenus);
-                menu.mainCustomerMenu();
+                logout = menu.mainCustomerMenu();
             }
             while(SessionManager.loggedInUser instanceof Admin && logout == false){
                 AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager, orderManager, (Admin) SessionManager.loggedInUser);

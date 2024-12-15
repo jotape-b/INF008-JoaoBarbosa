@@ -46,7 +46,7 @@ public class Menu {
         }
     }
 
-    protected void mainCustomerMenu() throws IOException{
+    protected boolean mainCustomerMenu() throws IOException{
         int selectedOption;
         while(true){
             System.out.println("-----------------------------\n");
@@ -61,7 +61,7 @@ public class Menu {
                     customerSubmenus.newOrderMenu();
                     break;
                 case 2:
-                    return;
+                    return true;
                 default:
                     System.out.println("Invalid entry.");
                     break;
