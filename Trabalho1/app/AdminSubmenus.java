@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import shopping.OrderManager;
@@ -77,14 +78,18 @@ public class AdminSubmenus {
         }while(isOperationFinished == false);
     }
 
-    protected void mostExpensiveOrderReportMenu(){
+    protected void mostExpensiveOrderReportMenu() throws IOException{
         System.out.println("REPORT - MOST EXPENSIVE ORDER: \n");
         admin.reportHighestOrderTotal();
+        System.out.println("Press any key to exit.");
+        System.in.read();
     }
 
-    protected void lowestStockReportMenu(){
+    protected void lowestStockReportMenu() throws IOException{
         System.out.println("REPORT - PRODUCT WITH LOWEST TOTAL STOCK: \n");
         admin.reportLowestStock();
+        System.out.println("Press any key to exit.");
+        System.in.read();
     }
 
     /*◦ Para usuários administradores:

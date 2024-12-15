@@ -26,10 +26,7 @@ public class Customer extends User {
 
     public void checkout(){
         Order newOrder = shoppingCart.checkout();
-        if(newOrder == null){
-            System.out.println("Invalid action. Order is empty.");
-        }
-        else{
+        if(newOrder != null){
             orderHistory.add(newOrder);
         }
     }

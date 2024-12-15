@@ -63,6 +63,12 @@ public class Menu {
                 case 1:
                     customerSubmenus.newOrderMenu();
                     break;
+                case 2:
+                    loginSubmenus.logoutMenu();
+                    return;
+                default:
+                    System.out.println("Invalid entry.");
+                    break;
             }
         }
     }
