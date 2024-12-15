@@ -2,7 +2,6 @@ package app;
 import auth.SessionManager;
 import shopping.OrderManager;
 import shopping.ProductManager;
-import shopping.ShoppingCart;
 import users.Admin;
 import users.Customer;
 import users.UserManager;
@@ -25,7 +24,7 @@ public class Main{
                 menu.mainCustomerMenu();
             }
             else if(SessionManager.loggedInUser instanceof Admin){
-                AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager, orderManager);
+                AdminSubmenus adminSubmenus = new AdminSubmenus(productManager, userManager, orderManager, (Admin) SessionManager.loggedInUser);
                 Menu menu = new Menu(loginSubmenus, adminSubmenus, null);
                 menu.mainAdminMenu();
             }

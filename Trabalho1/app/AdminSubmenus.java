@@ -5,20 +5,23 @@ import java.util.Scanner;
 import shopping.OrderManager;
 import shopping.ProductManager;
 import shopping.ShoppingCart;
+import users.Admin;
 import users.UserManager;
 import users.UserType;
 
 public class AdminSubmenus {
     Scanner scanner = new Scanner(System.in);
-    ProductManager productManager = new ProductManager();
-    UserManager userManager = new UserManager();
+    ProductManager productManager;
+    UserManager userManager;
     OrderManager orderManager;
     ShoppingCart shoppingCart;
+    Admin admin;
 
-    public AdminSubmenus(ProductManager productManager, UserManager userManager, OrderManager orderManager){
+    public AdminSubmenus(ProductManager productManager, UserManager userManager, OrderManager orderManager, Admin admin){
         this.productManager = productManager;
         this.userManager = userManager;
         this.orderManager = orderManager;
+        this.admin = admin;
     }
 
     protected void newProductMenu(){
@@ -42,7 +45,7 @@ public class AdminSubmenus {
                 scanner.nextLine();
             System.out.println("\nCategory: ");
                 category = scanner.nextLine();
-            isOperationFinished = productManager.addProduct(name, description, price, stock, category);
+            isOperationFinished = admin.addProduct(name, description, price, stock, category);
         }while(isOperationFinished == false);
     }
 
@@ -70,18 +73,18 @@ public class AdminSubmenus {
                 System.out.println("\nDelivery Address: ");
                 deliveryAddress = scanner.nextLine();
             }
-            isOperationFinished = userManager.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager);
+            isOperationFinished = admin.addUser(userType, name, email, password, deliveryAddress, productManager, orderManager);
         }while(isOperationFinished == false);
     }
 
     protected void mostExpensiveOrderReportMenu(){
         System.out.println("REPORT - MOST EXPENSIVE ORDER: \n");
-        orderManager.reportHighestOrderTotal();
+        admin.reportHighestOrderTotal();
     }
 
     protected void lowestStockReportMenu(){
         System.out.println("REPORT - PRODUCT WITH LOWEST TOTAL STOCK: \n");
-        productManager.reportLowestStock();
+        admin.reportLowestStock();
     }
 
     /*◦ Para usuários administradores:
