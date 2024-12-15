@@ -92,7 +92,7 @@ public class ShoppingCart implements Serializable{
     }
 
 
-    public static class CartItem{
+    public static class CartItem implements Serializable{
         private Product product;
         private int quantity;
 
