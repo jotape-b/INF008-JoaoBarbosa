@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductManager implements Serializable{
-    protected final HashMap<Integer, Product> products = new HashMap<Integer, Product>();
+    protected HashMap<Integer, Product> products = new HashMap<Integer, Product>();
     
-    public boolean addProduct(String name, String description, double price, int stock, String productType){
+    public final boolean addProduct(String name, String description, double price, int stock, String productType){
         if(stock < 1){
             System.out.println("Invalid stock. Registration failed.");
             return false;

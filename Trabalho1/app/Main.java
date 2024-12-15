@@ -13,10 +13,9 @@ public class Main{
         UserManager userManager = new UserManager();
         OrderManager orderManager = new OrderManager(userManager);
         SessionManager sessionManager = new SessionManager(userManager);
-        DataManager dataManager = new DataManager();
         LoginSubmenus loginSubmenus = new LoginSubmenus(sessionManager);
 
-        dataManager.loadData(userManager, productManager);
+        DataManager.loadData(userManager, productManager);
 
         userManager.addUser(UserType.ADMIN, "admin", "admin@email.com", "admin", "none", productManager, orderManager);
 
@@ -37,7 +36,7 @@ public class Main{
                 logout = menu.mainAdminMenu();
             }
             if(logout == true){
-                logout = loginSubmenus.logoutMenu(dataManager, userManager, productManager);
+                logout = loginSubmenus.logoutMenu(userManager, productManager);
             }
         }
     }

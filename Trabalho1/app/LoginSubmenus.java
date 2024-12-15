@@ -33,7 +33,7 @@ public class LoginSubmenus {
         }while (isLoginFinished == false);
     }
 
-    protected boolean logoutMenu(DataManager dataManager, UserManager userManager, ProductManager productManager) throws IOException{
+    protected boolean logoutMenu(UserManager userManager, ProductManager productManager) throws IOException{
         int selectedOption;
         System.out.println("DO YOU WISH TO LOGOUT?\n");
 
@@ -50,7 +50,7 @@ public class LoginSubmenus {
                 case 2:
                     return false;
                 case 3:
-                    dataManager.saveData(userManager, productManager);
+                    DataManager.saveData(userManager, productManager);
                     System.exit(0);
                 default:
                     System.out.println("Invalid entry.");
